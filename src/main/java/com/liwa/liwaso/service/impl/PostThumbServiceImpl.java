@@ -10,16 +10,17 @@ import com.liwa.liwaso.model.entity.PostThumb;
 import com.liwa.liwaso.model.entity.User;
 import com.liwa.liwaso.service.PostService;
 import com.liwa.liwaso.service.PostThumbService;
-import javax.annotation.Resource;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * 帖子点赞服务实现
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @author liwa
+ *  
  */
 @Service
 public class PostThumbServiceImpl extends ServiceImpl<PostThumbMapper, PostThumb>

@@ -10,38 +10,29 @@ import com.liwa.liwaso.config.WxOpenConfig;
 import com.liwa.liwaso.constant.UserConstant;
 import com.liwa.liwaso.exception.BusinessException;
 import com.liwa.liwaso.exception.ThrowUtils;
-import com.liwa.liwaso.model.dto.user.UserAddRequest;
-import com.liwa.liwaso.model.dto.user.UserLoginRequest;
-import com.liwa.liwaso.model.dto.user.UserQueryRequest;
-import com.liwa.liwaso.model.dto.user.UserRegisterRequest;
-import com.liwa.liwaso.model.dto.user.UserUpdateMyRequest;
-import com.liwa.liwaso.model.dto.user.UserUpdateRequest;
+import com.liwa.liwaso.model.dto.user.*;
 import com.liwa.liwaso.model.entity.User;
 import com.liwa.liwaso.model.vo.LoginUserVO;
 import com.liwa.liwaso.model.vo.UserVO;
 import com.liwa.liwaso.service.UserService;
-import java.util.List;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 用户接口
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @author liwa
+ *  
  */
 @RestController
 @RequestMapping("/user")

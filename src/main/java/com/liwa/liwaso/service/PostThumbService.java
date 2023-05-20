@@ -1,14 +1,14 @@
 package com.liwa.liwaso.service;
 
-import com.liwa.liwaso.model.entity.PostThumb;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.liwa.liwaso.model.entity.PostThumb;
 import com.liwa.liwaso.model.entity.User;
 
 /**
  * 帖子点赞服务
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @author liwa
+ *  
  */
 public interface PostThumbService extends IService<PostThumb> {
 

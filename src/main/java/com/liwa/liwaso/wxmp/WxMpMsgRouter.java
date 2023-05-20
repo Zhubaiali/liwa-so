@@ -3,7 +3,6 @@ package com.liwa.liwaso.wxmp;
 import com.liwa.liwaso.wxmp.handler.EventHandler;
 import com.liwa.liwaso.wxmp.handler.MessageHandler;
 import com.liwa.liwaso.wxmp.handler.SubscribeHandler;
-import javax.annotation.Resource;
 import me.chanjar.weixin.common.api.WxConsts.EventType;
 import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
@@ -11,11 +10,13 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.Resource;
+
 /**
  * 微信公众号路由
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @author liwa
+ *  
  */
 @Configuration
 public class WxMpMsgRouter {

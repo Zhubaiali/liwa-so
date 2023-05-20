@@ -36,7 +36,7 @@ public class CrawlerTest {
         int current = 1;
         String url = "https://cn.bing.com/images/search?q=小黑子&first=" + current;
         Document doc = Jsoup.connect(url).get();
-        Elements elements = doc.select(".iuscp.isv");
+        Elements elements = doc.select(".iuscp.isv"); // iuscp.isv是在网页检查元素找到的css选择器，刚好把我们需要的数据选择了。
              List<Picture> pictures = new ArrayList<>();
         for (Element element : elements) {
             // 取图片地址（murl）

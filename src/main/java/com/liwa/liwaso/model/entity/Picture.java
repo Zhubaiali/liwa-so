@@ -5,7 +5,9 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 图片
+ * @description  图片
+ * @author liwa
+ * @date 2023-05-20 23:37
  */
 @Data
 public class Picture implements Serializable {

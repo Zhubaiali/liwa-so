@@ -6,13 +6,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.liwa.liwaso.model.dto.post.PostQueryRequest;
 import com.liwa.liwaso.model.entity.Post;
 import com.liwa.liwaso.model.vo.PostVO;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * 帖子服务
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @author liwa
+ *  
  */
 public interface PostService extends IService<Post> {
 

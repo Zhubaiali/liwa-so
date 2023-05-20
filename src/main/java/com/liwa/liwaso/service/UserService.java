@@ -6,15 +6,16 @@ import com.liwa.liwaso.model.dto.user.UserQueryRequest;
 import com.liwa.liwaso.model.entity.User;
 import com.liwa.liwaso.model.vo.LoginUserVO;
 import com.liwa.liwaso.model.vo.UserVO;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 用户服务
  *
- * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
- * @from <a href="https://yupi.icu">编程导航知识星球</a>
+ * @author liwa
+ *  
  */
 public interface UserService extends IService<User> {
 
