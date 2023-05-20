@@ -1,4 +1,5 @@
 package com.liwa.liwaso;
+
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
@@ -26,13 +27,17 @@ public class CrawlerTest {
     @Resource
     private PostService postService;
 
+    // 实时抓取，调接口时实时从别人的服务器上抓取数据再返回（没实现，这里不是）
+
+    // 等网页渲染出明文内容后，从前端完整页面中解析出需要的内容
+    // 不是从接口获取，而是获取html文档 然后从中解析出需要的内容。这里使用Java的jsoup库
     @Test
     void testFetchPicture() throws IOException {
         int current = 1;
         String url = "https://cn.bing.com/images/search?q=小黑子&first=" + current;
         Document doc = Jsoup.connect(url).get();
         Elements elements = doc.select(".iuscp.isv");
-        List<Picture> pictures = new ArrayList<>();
+             List<Picture> pictures = new ArrayList<>();
         for (Element element : elements) {
             // 取图片地址（murl）
             String m = element.select(".iusc").get(0).attr("m");
@@ -50,6 +55,8 @@ public class CrawlerTest {
         System.out.println(pictures);
     }
 
+
+    // 离线抓取，获取到了入库
     @Test
     void testFetchPassage() {
         // 1. 获取数据
