@@ -1,8 +1,6 @@
 # 建表脚本
-# @author <a href="https://github.com/liyupi">程序员鱼皮</a>
-# @from <a href="https://yupi.icu">编程导航知识星球</a>
 
--- 创建库
+-- 创建库 我本地MySQL80叫so
 create database if not exists so;
 
 -- 切换库
@@ -24,7 +22,7 @@ create table if not exists user
     updateTime   datetime     default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
     isDelete     tinyint      default 0                 not null comment '是否删除',
     index idx_unionId (unionId)
-) comment '用户' collate = utf8mb4_unicode_ci;
+    ) comment '用户' collate = utf8mb4_unicode_ci;
 
 -- 帖子表
 create table if not exists post
@@ -40,7 +38,7 @@ create table if not exists post
     updateTime datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
     isDelete   tinyint  default 0                 not null comment '是否删除',
     index idx_userId (userId)
-) comment '帖子' collate = utf8mb4_unicode_ci;
+    ) comment '帖子' collate = utf8mb4_unicode_ci;
 
 -- 帖子点赞表（硬删除）
 create table if not exists post_thumb
@@ -52,7 +50,7 @@ create table if not exists post_thumb
     updateTime datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
     index idx_postId (postId),
     index idx_userId (userId)
-) comment '帖子点赞';
+    ) comment '帖子点赞';
 
 -- 帖子收藏表（硬删除）
 create table if not exists post_favour
@@ -64,4 +62,4 @@ create table if not exists post_favour
     updateTime datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
     index idx_postId (postId),
     index idx_userId (userId)
-) comment '帖子收藏';
+    ) comment '帖子收藏';
