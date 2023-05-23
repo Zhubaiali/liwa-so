@@ -5,10 +5,13 @@ import com.liwa.liwaso.common.BaseResponse;
 import com.liwa.liwaso.common.ErrorCode;
 import com.liwa.liwaso.common.ResultUtils;
 import com.liwa.liwaso.exception.BusinessException;
+import com.liwa.liwaso.exception.ThrowUtils;
+import com.liwa.liwaso.mapper.SearchFacade;
 import com.liwa.liwaso.model.dto.post.PostQueryRequest;
 import com.liwa.liwaso.model.dto.search.SearchRequestDTO;
 import com.liwa.liwaso.model.dto.user.UserQueryRequest;
 import com.liwa.liwaso.model.entity.Picture;
+import com.liwa.liwaso.model.enums.SearchTypeEnum;
 import com.liwa.liwaso.model.vo.PostVO;
 import com.liwa.liwaso.model.vo.SearchVO;
 import com.liwa.liwaso.model.vo.UserVO;
@@ -45,56 +48,13 @@ public class SearchController {
     @Resource
     private PictureService pictureService;
 
-//    @Resource
-//    private SearchFacade searchFacade;
+    @Resource
+    private SearchFacade searchFacade;
 
     @PostMapping("/all")
     public BaseResponse<SearchVO> searchAll(@RequestBody SearchRequestDTO searchRequestDTO, HttpServletRequest request) {
-        String searchText = searchRequestDTO.getSearchText();
-//        Page<Picture> picturePage = pictureService.searchPicture(searchText, 1, 10);
 
-        // 拿到并发对象
-        CompletableFuture<Page<UserVO>> userVOPageCompletableFuture = CompletableFuture.supplyAsync(() -> {
-            UserQueryRequest userQueryRequest = new UserQueryRequest();
-            userQueryRequest.setUserName(searchText);
-            return userService.listUserVOByPage(userQueryRequest);
-        });
-/*
-        UserQueryRequest userQueryRequest = new UserQueryRequest();
-        userQueryRequest.setUserName(searchText);
-        Page<UserVO> userVOPage = userService.listUserVOByPage(userQueryRequest);*/
+        return ResultUtils.success(searchFacade.searchAll(searchRequestDTO, request)); 
 
-        CompletableFuture<Page<PostVO>> postVOPageCompletableFuture = CompletableFuture.supplyAsync(() -> {
-            PostQueryRequest postQueryRequest = new PostQueryRequest();
-            postQueryRequest.setSearchText(searchText);
-            return postService.listPostVOByPage(postQueryRequest, request);
-        });
-        /*
-        PostQueryRequest postQueryRequest = new PostQueryRequest();
-        postQueryRequest.setSearchText(searchText);
-        Page<PostVO> postVOPage = postService.listPostVOByPage(postQueryRequest , request);*/
-
-        CompletableFuture<Page<Picture>> picturePageCompletableFuture = CompletableFuture.supplyAsync(() -> {
-            return pictureService.searchPicture(searchText, 1, 10);
-        });
-
-        // 等待前面3个查询完成。  join() 方法会阻塞当前线程直到所有任务完成
-        CompletableFuture.allOf(userVOPageCompletableFuture, postVOPageCompletableFuture, picturePageCompletableFuture).join();
-
-        try {
-            Page<UserVO> userVOPage = userVOPageCompletableFuture.get();
-            Page<PostVO> postVOPage = postVOPageCompletableFuture.get();
-            Page<Picture> picturePage = picturePageCompletableFuture.get();
-            SearchVO searchVO = new SearchVO();
-            searchVO.setUserList(userVOPage.getRecords());
-            searchVO.setPostList(postVOPage.getRecords());
-            searchVO.setPictureList(picturePage.getRecords());
-            return  ResultUtils.success(searchVO);
-
-        } catch (Exception e) {
-            log.error("查询异常", e);
-            e.printStackTrace();
-            throw  new BusinessException(ErrorCode.SYSTEM_ERROR, "查询异常");
-        }
     }
 }
