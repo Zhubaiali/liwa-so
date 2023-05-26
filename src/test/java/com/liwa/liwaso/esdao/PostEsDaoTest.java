@@ -45,16 +45,17 @@ public class PostEsDaoTest {
         Page<PostEsDTO> PostPage = postEsDao.findAll(
                 PageRequest.of(0, 5, Sort.by("createTime")));
         List<PostEsDTO> postList = PostPage.getContent();
+        postEsDao.findById(1L);
         System.out.println(postList);
     }
 
     @Test
     void testAdd() {
         PostEsDTO postEsDTO = new PostEsDTO();
-        postEsDTO.setId(1L);
-        postEsDTO.setTitle("test");
-        postEsDTO.setContent("test");
-        postEsDTO.setTags(Arrays.asList("java", "python"));
+        postEsDTO.setId(4L);
+        postEsDTO.setTitle("liwa喝");
+        postEsDTO.setContent("丽娃吃吃吃");
+        postEsDTO.setTags(Arrays.asList("golang", "spark"));
         postEsDTO.setThumbNum(1);
         postEsDTO.setFavourNum(1);
         postEsDTO.setUserId(1L);
@@ -81,4 +82,12 @@ public class PostEsDaoTest {
         List<PostEsDTO> postEsDaoTestList = postEsDao.findByUserId(1L);
         System.out.println(postEsDaoTestList);
     }
+
+    @Test
+    void testFindByTitle() {
+        List<PostEsDTO> postEsDaoTestList = postEsDao.findByTitle("test111");
+        System.out.println(postEsDaoTestList);
+    }
+
+
 }
